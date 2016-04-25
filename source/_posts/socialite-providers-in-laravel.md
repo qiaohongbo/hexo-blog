@@ -1,6 +1,6 @@
 ---
-title: "Laravel 实现第三方登录认证（包括微博、QQ、微信、豆瓣）"
-date: "2016-03-01 15:00:38 +0800"
+title: Laravel 实现第三方登录认证（包括微博、QQ、微信、豆瓣）
+date: 2016-03-01 15:00:38
 categories:
     - php
 tags:

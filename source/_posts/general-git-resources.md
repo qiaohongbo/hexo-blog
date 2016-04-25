@@ -1,6 +1,6 @@
 ---
-title: "git 资源"
-date: '2016-02-26'
+title: git 资源
+date: 2016-02-26
 categories:
     - git
 tags:

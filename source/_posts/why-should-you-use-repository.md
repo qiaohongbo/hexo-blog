@@ -1,6 +1,6 @@
 ---
 title: 为什么你应该使用 Repository
-date: '2016-02-29'
+date: 2016-02-29
 categories:
     - php
 tags:

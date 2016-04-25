@@ -1,6 +1,6 @@
 ---
-title: "使用 casts 来处理数据 - Eloquent"
-date: "2016-03-05 21:44:36 +0800"
+title: 使用 casts 来处理数据 - Eloquent
+date: 2016-03-05 21:44:36
 categories:
     - php
 tags:

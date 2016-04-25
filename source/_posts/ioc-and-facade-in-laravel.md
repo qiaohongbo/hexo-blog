@@ -1,6 +1,6 @@
 ---
 title: Laravel 核心：控制反转（Inversion of Control）和门面模式（Facade）
-date: '2016-02-29'
+date: 2016-02-29
 categories:
     - php
 tags:

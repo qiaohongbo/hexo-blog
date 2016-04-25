@@ -1,6 +1,6 @@
 ---
-title: "gitlab 源码安装"
-date: "2016-03-01 15:46:09 +0800"
+title: gitlab 源码安装
+date: 2016-03-01 15:46:09
 categories:
     - git
 tags:

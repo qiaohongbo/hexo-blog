@@ -1,6 +1,6 @@
 ---
 title: 如何简单的输出 “N 分钟前”、“1 天前” 等友好的 time ago 时间
-date: '2016-02-29'
+date: 2016-02-29
 categories:
     - php
 tags:

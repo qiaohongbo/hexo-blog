@@ -1,6 +1,6 @@
 ---
-title: 'Apache下配置认证用户'
-date: '2014-11-16'
+title: Apache下配置认证用户
+date: 2014-11-16
 categories:
 	- server
 tags:

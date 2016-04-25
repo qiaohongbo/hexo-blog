@@ -1,6 +1,6 @@
 ---
-title: "Laravel 关联模型由于名称一致性导致的问题"
-date: '2016-02-29'
+title: Laravel 关联模型由于名称一致性导致的问题
+date: 2016-02-29
 categories:
     - php
 tags:

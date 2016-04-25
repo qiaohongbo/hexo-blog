@@ -1,6 +1,6 @@
 ---
-title: ' Js实现旋转的图片'
-date: '2015-05-08'
+title: Js实现旋转的图片
+date: 2015-05-08
 categories:
 	- javascript
 tags:
