@@ -27,7 +27,7 @@ tags:
 
 简单起见，修改 `create_users_table`
 
-```
+```php
 $table->increments('id');
 $table->string('name');
 $table->json('avatar')->nullable();
@@ -36,7 +36,7 @@ $table->timestamps();
 
 然后去 `User.php` 中定义一下
 
-```
+```php
 protected $fillable = [
     'name', 'avatar'
 ];
@@ -48,7 +48,7 @@ protected $casts = [
 
 现在简单的定义好了，还没有进入后面的，不过先去测试一下, `routes.php`
 
-```
+```php
 Route::get('/', function() {
     User::create([
         'name' => 'RryLee',
@@ -71,7 +71,7 @@ Route::get('/get', function() {
 ## 问题来了
 你现在怎么去修改(这里只是假如，用户又重新剪裁了原图，只是说明修改这种情况)，这个时候还真的需要引入我们的 Avatar　类了.
 
-```
+```php
 <?php
 
 namespace App;
@@ -148,7 +148,7 @@ class Avatar
 这里我直接拿来了一段代码，　注意 `persist()``
 接着像添加一个关系一样去 `User` 模型中添加一下就可以了.
 
-```
+```php
 public function avatar()
     {
     return new Avatar(isset($this->avatar) ? $this->avatar : [], $this);
@@ -157,7 +157,7 @@ public function avatar()
 
 现在就可以尽情的对我们的 `avatar` 来进行操作了
 
-```
+```php
 Route::get('save', function() {
     $user = User::findOrFail(1);
     $avatar = $user->avatar();

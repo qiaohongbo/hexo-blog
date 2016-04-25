@@ -17,7 +17,7 @@ tags:
 
 其实使用 `Repositories` 并不是必要的，在你的应用中你完全可以不使用这个设计模式的前提下完成绝大多数的事情，然而随着时间的推移你可能把自己陷入一个死角，比如不选择使用 `Repositories` 会使你的应用测试很不容易，具体的实现将会变的很复杂，下面我们看一个例子。 `HousesController.php`
 
-```
+```php
 <?php
 class HousesController extends BaseController {
     public function index()
@@ -52,7 +52,7 @@ class HousesController extends BaseController {
 
 第二步创建对应的接口，其决定着我们的 `repository` 类必须要实现的相关方法，如下例所示，在此再次强调的是命名空间一定要记得加上。  `HouseRepositoryInterface.php`
 
-```
+```php
 <?php namespace App\Repositories;
 
 interface HouseRepositoryInterface {
@@ -66,7 +66,7 @@ interface HouseRepositoryInterface {
 
 现在我们可以创建我们 `repository` 类 来给我们干活了，在这个类文件中我们可以把我们的绝大多数的数据库查询都放进去，不论多么复杂。如下面的例子 `DbHouseRepository.php`
 
-```
+```php
 <?php namespace App\Repositories;
 
 use House;
@@ -89,7 +89,7 @@ class DbHouseRepository implements HouseRepositoryInterface {
 
 首先你需要理解所谓服务提供，请参考手册[服务提供者](https://laravel.com/docs/5.0/providers/) `BackendServiceProvider.php`
 
-```
+```php
 <?php namespace App\Repositories;
 
 use Illuminate\Support\SeriveProvider;
@@ -113,7 +113,7 @@ class BackSerivePrivider extends ServiceProvider {
 
 当我们完成上面的那些内容之后，我们在 `Controller` 只需要简单的调用方法代替之前的复杂的数据库调用，如下面内容： `HousesController.php`
 
-```
+```php
 <?php
 
 use App\repositories\HouseRepositoryInterface;

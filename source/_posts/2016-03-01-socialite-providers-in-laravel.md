@@ -28,6 +28,7 @@ SocialiteProviders 的使用也超级简单易用，每个都对应了文档。�
 ## 以 Weibo 为例
 
 ### 1.安装
+
 ```
 composer require socialiteproviders/weibo
 ```
@@ -36,7 +37,7 @@ composer require socialiteproviders/weibo
 如果之前添加过 Socialite Provider，得先注释掉：
 文件 `config/app.php`
 
-```
+```php
   'providers' => [
   //    Laravel\Socialite\SocialiteServiceProvider::class,
       SocialiteProviders\Manager\ServiceProvider::class, // add
@@ -47,7 +48,7 @@ composer require socialiteproviders/weibo
 如果之前安装 Socialite 时添加过，就不需要再添加了。
 还是文件 `config/app.php`
 
-```
+```php
 'aliases' => [
     'Socialite' => Laravel\Socialite\Facades\Socialite::class, // add
 ],
@@ -56,7 +57,7 @@ composer require socialiteproviders/weibo
 ### 4.添加事件处理器
 文件 `app/Providers/EventServiceProvider.php`
 
-```
+```php
 protected $listen = [
     'SocialiteProviders\Manager\SocialiteWasCalled' => [
         'SocialiteProviders\Weibo\WeiboExtendSocialite@handle',
@@ -68,7 +69,7 @@ protected $listen = [
 
 `SocialiteProviders\Manager\ServiceProvider` 实际上是继承于 `Laravel\Socialite\SocialiteServiceProvider` 的，这是它的源码：
 
-```
+```php
 <?php
 
 namespace SocialiteProviders\Manager;
@@ -90,7 +91,7 @@ class ServiceProvider extends SocialiteServiceProvider
 ```
 它只是在启动时会触发 `SocialiteWasCalled` 事件，刚才在 `SocialiteProviders\Manager\SocialiteWasCalled` 事件的监听器中加上了事件处理器：`SocialiteProviders\Weibo\WeiboExtendSocialite@handle`。处理器的源码：
 
-```
+```php
 <?php
 
 namespace SocialiteProviders\Weibo;
@@ -110,7 +111,7 @@ class WeiboExtendSocialite
 ### 5.添加路由
 文件 `app/Http/routes.php`
 
-```
+```php
 // 引导用户到新浪微博的登录授权页面
 Route::get('auth/weibo', 'Auth\AuthController@weibo');
 // 用户授权后新浪微博回调的页面
@@ -120,7 +121,7 @@ Route::get('auth/callback', 'Auth\AuthController@callback');
 ### 6.配置
 文件 `config/services.php`
 
-```
+```php
 'weibo' => [
     'client_id' => env('WEIBO_KEY'),
     'client_secret' => env('WEIBO_SECRET'),
@@ -130,7 +131,7 @@ Route::get('auth/callback', 'Auth\AuthController@callback');
 
 文件 `.env`
 
-```
+```php
 WEIBO_KEY=yourkeyfortheservice
 WEIBO_SECRET=yoursecretfortheservice
 WEIBO_REDIRECT_URI=http://localhost/public/auth/callback
@@ -143,7 +144,7 @@ WEIBO_REDIRECT_URI=http://localhost/public/auth/callback
 ### 7.代码实现
 文件 `app/Http/Controllers/Auth/AuthController.php`
 
-```
+```php
 public function weibo() {
     return \Socialite::with('weibo')->redirect();
     // return \Socialite::with('weibo')->scopes(array('email'))->redirect();
@@ -163,7 +164,7 @@ public function callback() {
 访问 `http://localhost/public/auth/weibo`，会跳转到新浪微博的登录授权页面，授权成功后，会跳转到 `http://localhost/public/auth/callback`
 返回的结果：
 
-```
+```php
 string(10) "3221174302"
 string(11) "Mr_Jing1992"
 NULL
@@ -173,7 +174,7 @@ string(50) "http://tp3.sinaimg.cn/3221174302/180/40064692810/1"
 
 user 对象是现实了接口 `Laravel\Socialite\Contracts\User` 的，有以下几个方法：
 
-```
+```php
 <?php
 
 namespace Laravel\Socialite\Contracts;
@@ -194,6 +195,6 @@ interface User
 
 [http://open.weibo.com/wiki/2/account/profile/email](http://open.weibo.com/wiki/2/account/profile/email)
 
-但是，id 这个应该是所有第三方认证服务提供商都会返回的。不然那就没有办法作账号关联了。
+但是，`id` 这个应该是所有第三方认证服务提供商都会返回的。不然那就没有办法作账号关联了。
 
-获取到第三方的 id 后，如果这个 id 和你网站用户账号有绑定，就直接登录你网站用户的账号。如果没有任何账号与之绑定，就应该提示用户绑定已有账号或者是注册新账号什么的，这些具体逻辑就不在多说了。还有，在新浪上面还有一个取消授权回调页的值需要填，是用户在授权页点击“取消”按钮时新浪回调的页面。这个可以设置为你网站的登录页面或者其他页面。
+获取到第三方的 `id` 后，如果这个 `id` 和你网站用户账号有绑定，就直接登录你网站用户的账号。如果没有任何账号与之绑定，就应该提示用户绑定已有账号或者是注册新账号什么的，这些具体逻辑就不在多说了。还有，在新浪上面还有一个取消授权回调页的值需要填，是用户在授权页点击“取消”按钮时新浪回调的页面。这个可以设置为你网站的登录页面或者其他页面。

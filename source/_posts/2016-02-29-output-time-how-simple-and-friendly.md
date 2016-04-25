@@ -15,16 +15,17 @@ tags:
 
 ### 第一步，在 app/Providers/AppServiceProvider.php 中设置地区：
 
-    //...
+```php
     public function boot()
     {
         \Carbon\Carbon::setLocale('zh');
     }
-    //...
+```
 
 ### 第二步，模板中使用 Carbon 的 diffForHumans 方法来输出友好时间
 
+```
     {{ $comment->created_at->diffForHumans() }} // 3小时前
-
+```
 
 参考：[http://carbon.nesbot.com/docs/#api-localization](http://carbon.nesbot.com/docs/#api-localization)
