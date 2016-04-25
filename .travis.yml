@@ -22,7 +22,8 @@ addons:
   ssh_known_hosts: github.com
 
 script:
-  -npm install hexo-cli -g
+  - npm install hexo-cli -g
+  - hexo --version
   - npm run build
 
 deploy:
