@@ -1,5 +1,5 @@
 ---
-title: 按照 shadowsocks-go 多用户版
+title: 安装 shadowsocks-go 多用户版
 date: 2016-04-29 09:18:33
 categories:
     - server
